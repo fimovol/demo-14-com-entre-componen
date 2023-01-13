@@ -11,18 +11,6 @@ export class HijoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.ejecutarEvento()
   }
   @Input() dato:string | null | undefined = ""
-  @Input() variable:Ejemplo = {
-    hola:""
-  }
-  mensaje:Ejemplo = {
-    hola:"datos del hijo",
-  }
-  @Output() miEvento = new EventEmitter<Ejemplo>()
-
-  ejecutarEvento(){
-    this.miEvento.emit(this.mensaje)
-  }
 }

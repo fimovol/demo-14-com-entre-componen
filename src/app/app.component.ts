@@ -15,13 +15,5 @@ export class AppComponent {
     dato: [''],
   })
   title = 'demo14-comunicacion-entre-componentes';
-  del_padre:Ejemplo={
-    hola:"datos del padre"
-  }
-  del_hijo= ""
-  getMensaje(e:Ejemplo){
-    setTimeout(()=>{
-      this.del_hijo = e.hola
-    },0)
-  }
+  
 }
