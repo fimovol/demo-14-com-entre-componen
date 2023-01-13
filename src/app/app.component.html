@@ -1,12 +1,41 @@
-<div>
-  <p>yo soy el padre</p>
-  <p>datos del hijo en el padre</p>
-  <p>{{del_hijo}} </p>
-  <form [formGroup]="registroform" >
-    <input type="text" formControlName="dato" >
-    {{registroform.value.dato}}
+<section class="container-sm bg-light">
+  <h1 class="text-info bold">registro de personas</h1>
+  <app-hijo [dato]="registroform.value"></app-hijo>
+  <form [formGroup]="registroform" (submit)="send()">
+    <section class="form-group">
+      <label for="">Nombre</label>
+      <input class="form-control" type="text" formControlName="nombre" >
+      <section *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)">
+        <section *ngIf="nombre?.errors?.['required']" class="alert alert-success">
+            el nombre es obligatorio
+        </section>
+    </section>
+    </section>
+    <section class="form-group">
+      <label for="">Dni</label>
+      <input class="form-control" type="text" formControlName="dni" >
+      <section *ngIf="dni?.invalid && (dni?.dirty || dni?.touched)">
+        <section *ngIf="dni?.errors?.['required']" class="alert alert-success">
+            el dni es obligatorio
+        </section>
+        <section *ngIf="dni?.errors?.['pattern']" class="alert alert-success">
+            el dni debe ser solo 8 digitos
+        </section>
+    </section>
+    </section>
+    <section class="form-group">
+      <label for="">estado civil</label>
+      <select class="form-select" name="" id="" formControlName="estadoCivil" >
+        <option *ngFor="let indice of array" value="{{indice}}">{{indice}}</option>
+      </select>
+      <section *ngIf="estadoCivil?.invalid && (estadoCivil?.dirty || estadoCivil?.touched)">
+        <section *ngIf="estadoCivil?.errors?.['required']" class="alert alert-success">
+            el estado civil es obligatorio
+        </section>
+      </section>
+    </section>
+    <section class="form-group">
+      <button type="submit" class="btn btn-success m-3">enviar </button>
+    </section>
   </form>
-  <app-hijo [variable]="del_padre" [dato]="registroform.value.dato" (miEvento)="getMensaje($event)"></app-hijo>
-  
-  
-</div>
+</section>

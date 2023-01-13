@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Ejemplo } from './modelo/interfaces';
-import { FormBuilder } from '@angular/forms';
+import { Ejemplo, Formulario } from './modelo/interfaces';
+import { FormBuilder,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +12,32 @@ export class AppComponent {
 
   }
   registroform = this.formbuilder.group({
-    dato: [''],
+    nombre: ['',
+      {
+        validators:[
+          Validators.required,
+        ]
+      }],
+    dni: ['',
+      {
+        validators:[
+          Validators.required,
+          Validators.pattern('[0-9]{8}')
+        ]
+      }],
+    estadoCivil: ['',
+      {
+        validators:[
+          Validators.required,
+        ]
+      }],
   })
+  get nombre(){return this.registroform.get('nombre')}
+  get dni(){return this.registroform.get('dni')}
+  get estadoCivil(){return this.registroform.get('estadoCivil')}
   title = 'demo14-comunicacion-entre-componentes';
-  del_padre:Ejemplo={
-    hola:"datos del padre"
+  send(){
+    console.log(this.registroform.value);
   }
-  del_hijo= ""
-  getMensaje(e:Ejemplo){
-    setTimeout(()=>{
-      this.del_hijo = e.hola
-    },0)
-  }
+  array=["soltero","casado","divorciado","viudo"]
 }

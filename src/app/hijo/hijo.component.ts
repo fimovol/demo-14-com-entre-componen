@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output,EventEmitter  } from '@angular/core';
-import { Ejemplo } from '../modelo/interfaces';
+import { Ejemplo,Formulario } from '../modelo/interfaces';
 
 @Component({
   selector: 'app-hijo',
@@ -11,18 +11,10 @@ export class HijoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.ejecutarEvento()
+    console.log(this.dato)
   }
-  @Input() dato:string | null | undefined = ""
-  @Input() variable:Ejemplo = {
-    hola:""
+  @Input() dato = {
   }
-  mensaje:Ejemplo = {
-    hola:"datos del hijo",
-  }
-  @Output() miEvento = new EventEmitter<Ejemplo>()
-
-  ejecutarEvento(){
-    this.miEvento.emit(this.mensaje)
-  }
+  
+  
 }
